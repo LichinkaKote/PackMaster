@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c704c364a1134b45a00fce84f82ace0, type: 3}
+  m_Name: Russia
+  m_EditorClassIdentifier: 
+  posibleItems:
+  - {fileID: 11400000, guid: d5ea48ca7ce91074eb429b916e6a5711, type: 2}
+  posibleClients:
+  - {fileID: 11400000, guid: d09c1bb08ca848c49a3237911f2198dc, type: 2}
