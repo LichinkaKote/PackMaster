@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Level_1
   m_EditorClassIdentifier: 
   itemSize: {x: 1, y: 1}
+  possibleSuitCases:
+  - {fileID: 11400000, guid: 1297d6de979f63541ac0020e53dd5b91, type: 2}

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95c8db9c95f98874e9da011c401bd303, type: 3}
-  m_Name: Blender
+  m_Name: Knife
   m_EditorClassIdentifier: 
-  size: {x: 1, y: 1}
-  sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  size: {x: 1, y: 2}
+  sprite: {fileID: 21300000, guid: 58b8accd4374a5c41b76c89301cb54c8, type: 3}

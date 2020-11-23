@@ -6,52 +6,56 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoObserver
 {
-    [SerializeField] private GameObject itemPF;
+    [SerializeField] private GameObject itemPF, gridPf;
     [SerializeField] private RectTransform content;
-    [SerializeField] private Button addItemBtn;
+
     private Inventory inventory = new Inventory();
     private Vector2 cellSize;
-  
+
+    public Inventory Inventory { get => inventory; }
+    public Vector2 CellSize { get => cellSize; }
+    public static InventoryUI Create(int sizeX, int sizeY)
+    {
+        var inv = new Inventory();
+        inv.Size = new Vector2Int(sizeX, sizeY);
+        var inst = Instantiate(Prefabs.inventoryUI);
+        var UI = inst.GetComponent<InventoryUI>();
+        UI.SetInventory(inv);
+        return UI;
+    }
     private void Awake()
     {
         observable = inventory;
-        addItemBtn.onClick.AddListener(() => inventory.AddItem(Prefabs.items[0]));
-        CalculateCellSize();
+        cellSize = new Vector2(100, 100);
+        CalculateContentSize();
     }
     public void SetInventory(Inventory inventory)
     {
         this.inventory = inventory;
-        CalculateCellSize();
+        CalculateContentSize();
         Resubscribe(inventory);
-        //DrawItems();
         DrawCellGrid();
     }
     protected override void OnEnable()
     {
         base.OnEnable();
-        //DrawItems();
         DrawCellGrid();
     }
     public override void Notify()
     {
-        //DrawItems();
         DrawCellGrid();
     }
-    /*
-    private void DrawItems()
+
+    public void SetCellSize(Vector2 cellSize)
     {
-        ClearContent();
-        for (int i = 0; i < inventory.items.Count; i++)
-        {
-            DrawItem(inventory.items[i]);
-        }
+        this.cellSize = cellSize;
+        CalculateContentSize();
+        DrawCellGrid();
     }
-    private void DrawItem(Item item)
+    public void SetPosition(Vector2 position)
     {
-        var inst = Instantiate(itemPF, content.transform);
-        var image = inst.GetComponent<Image>();
-        image.sprite = item.Sprite;
-    }*/
+        content.anchoredPosition = position;
+    }
     private void ClearContent()
     {
         for (int i = 0; i < content.transform.childCount; i++)
@@ -59,7 +63,11 @@ public class InventoryUI : MonoObserver
             Destroy(content.transform.GetChild(i).gameObject);
         }
     }
-    
+    private void CalculateContentSize()
+    {
+        var rect = content.transform as RectTransform;
+        rect.sizeDelta = new Vector2(cellSize.x * inventory.Size.x, cellSize.y * inventory.Size.y);
+    }
     private void CalculateCellSize()
     {
         float contentW = content.rect.width;
@@ -75,22 +83,70 @@ public class InventoryUI : MonoObserver
         {
             for (int y = 0; y < inventory.Size.y; y++)
             {
-                inst = Instantiate(itemPF, content.transform);
-                SetCellPosition(inst, new Vector2Int(x, y));
+                inst = Instantiate(gridPf, content.transform);
+                SetPositionInGrid(inst, new Vector2Int(x, y), Vector2Int.one);
             }
         }
+        DrawItems();
     }
 
-    private void SetCellPosition(GameObject itemPf, Vector2Int position)
+    private void SetPositionInGrid(GameObject obj, Vector2Int position, Vector2Int size)
     {
-        var rectTrans = itemPf.transform as RectTransform;
-        var cellPosition = GetCellPosition(position);
-        rectTrans.sizeDelta = new Vector2(cellSize.y, cellSize.x);
-        rectTrans.localPosition = new Vector3(cellPosition.y, cellPosition.x, 0f);
+        var rectTrans = obj.transform as RectTransform;
+        var cellPosition = GetGridPositionFromCell(position);
+        rectTrans.sizeDelta = new Vector2(cellSize.x * size.x, cellSize.y * size.y);
+        rectTrans.localPosition = new Vector3(cellPosition.x, -cellPosition.y, 0f);
     }
-
-    private Vector2 GetCellPosition(Vector2Int cellPosition)
+    private void DrawItems()
     {
-        return new Vector2(cellPosition.x * -cellSize.x, cellPosition.y * cellSize.y);
+        for (int i = 0; i < inventory.cells.Count; i++)
+        {
+            DrawItem(inventory.cells[i]);
+        }
+    }
+    private void DrawItem(Cell cell)
+    {
+        var inst = Instantiate(itemPF, content.transform);
+        var image = inst.GetComponent<Image>();
+        image.sprite = cell.item.Sprite;
+        var pos = new Vector2Int(cell.position.x, cell.position.y);
+        SetPositionInGrid(inst, pos, cell.item.Size);
+    }
+    private Vector2 GetGridPositionFromCell(Vector2Int cellPosition)
+    {
+        return new Vector2(cellPosition.x * cellSize.x, cellPosition.y * cellSize.y);
+    }
+    private Vector2Int GetCellPositionFromGrid(Vector2 position)
+    {
+        var posX = Mathf.FloorToInt(position.x / cellSize.x);
+        var posY = Mathf.FloorToInt(-position.y / cellSize.y);
+        return new Vector2Int(posX, posY);
+    }
+    public void MoveItem(Vector2 originPos, Vector2 position)
+    {
+        inventory.MoveItem(GetCellPositionFromGrid(originPos), GetCellPositionFromGrid(position));
+    }
+    public void MoveItemToOtherInventory(InventoryUI otherInvUI, Vector2 targetPosition, Vector2 originPosition)
+    {
+        var cellPos = GetCellPositionFromGrid(originPosition);
+        var targetCellPos = otherInvUI.GetCellPositionFromGrid(targetPosition);
+        if (inventory.TryGetCellWithPosition(cellPos, out Cell cell))
+        {
+            if (otherInvUI.inventory.IsPossibleToPlaceItem(targetCellPos, cell))
+            {
+                cell.position = targetCellPos;
+                otherInvUI.inventory.AddItem(cell);
+                inventory.RemoveItem(cell);
+            }
+            else
+            {
+                DrawCellGrid();
+            }
+        }
+        else
+        {
+            DrawCellGrid();
+        }
+        
     }
 }

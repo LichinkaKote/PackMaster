@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c8db9c95f98874e9da011c401bd303, type: 3}
-  m_Name: Mixer
+  m_Script: {fileID: 11500000, guid: bcbc6f2e2bf49044f8e34bb728553908, type: 3}
+  m_Name: Level_3
   m_EditorClassIdentifier: 
-  size: {x: 1, y: 1}
-  sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  itemSize: {x: 1, y: 2}
+  possibleSuitCases:
+  - {fileID: 11400000, guid: 1297d6de979f63541ac0020e53dd5b91, type: 2}
+  - {fileID: 11400000, guid: 7b5394ec04f079c48a0666c03eeedc00, type: 2}
