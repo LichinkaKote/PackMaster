@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcbc6f2e2bf49044f8e34bb728553908, type: 3}
   m_Name: Level_3
   m_EditorClassIdentifier: 
-  itemSize: {x: 1, y: 2}
+  itemSize: {x: 2, y: 2}
   possibleSuitCases:
-  - {fileID: 11400000, guid: 1297d6de979f63541ac0020e53dd5b91, type: 2}
-  - {fileID: 11400000, guid: 7b5394ec04f079c48a0666c03eeedc00, type: 2}
+  - {fileID: 11400000, guid: 56f0fbd373079494995dcbf6de7c23a9, type: 2}

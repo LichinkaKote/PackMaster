@@ -19,11 +19,16 @@ public class Inventory : Observer
         cells.Remove(cell);
         Notify();
     }
+    public void Clear()
+    {
+        cells.Clear();
+        Notify();
+    }
     public void MoveItem(Vector2Int position, Vector2Int newPosition)
     {
         if (TryGetCellWithPosition(position, out Cell cell))
         {
-            if (IsPossibleToPlaceItem(newPosition, cell))
+            if (IsPossibleToPlaceItem(newPosition, cell, out List<Cell> wi))
             {
                 cell.position = newPosition;
             }
@@ -43,10 +48,15 @@ public class Inventory : Observer
         }
         return false;
     }
-    public bool IsPossibleToPlaceItem(Vector2Int targetPosition, Cell cell)
+    public bool IsPossibleToPlaceItem(Vector2Int targetPosition, Cell cell, out List<Cell> wrongItems)
     {
+        wrongItems = new List<Cell>();
         var itemSize = cell.item.Size;
-        if (itemSize.x * itemSize.y > GetFreeCellsCount()) return false;
+        if (itemSize.x * itemSize.y > GetFreeCellsCount()) 
+        {
+            wrongItems.Add(cell);
+            return false;
+        }
         if (!IsItemInBounds(targetPosition, itemSize)) return false;
         for (int i = 0; i < cells.Count; i++)
         {
@@ -56,6 +66,8 @@ public class Inventory : Observer
             var currentItemSize = cells[i].item.Size;
             if (IsItemsOverlap(position, currentItemSize, targetPosition, itemSize))
             {
+                wrongItems.Add(cells[i]);
+                wrongItems.Add(cell);
                 return false;
             }
         }

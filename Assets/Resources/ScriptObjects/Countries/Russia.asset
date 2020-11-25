@@ -13,6 +13,14 @@ MonoBehaviour:
   m_Name: Russia
   m_EditorClassIdentifier: 
   posibleItems:
+  - {fileID: 11400000, guid: ae458f9aac5192d40bfef13440c50150, type: 2}
+  - {fileID: 11400000, guid: 8b9d9db3e0cee584bb0758ac0a38b454, type: 2}
+  - {fileID: 11400000, guid: d9ef6ef43678501458cac9fca12af3d3, type: 2}
+  - {fileID: 11400000, guid: 2ac14501ef5b8384b8cbba31178e7f27, type: 2}
+  - {fileID: 11400000, guid: c1eb7b3ae16d73341bd952dc6122cf82, type: 2}
   - {fileID: 11400000, guid: d5ea48ca7ce91074eb429b916e6a5711, type: 2}
+  - {fileID: 11400000, guid: d2be5eb94e2fc4b468b8d2d8c01b7a80, type: 2}
+  - {fileID: 11400000, guid: 127724d4a3d4a0e4ab63a94650f60093, type: 2}
+  - {fileID: 11400000, guid: ce3b99aeddaaf8a43bb029f2dcbf3f1d, type: 2}
   posibleClients:
   - {fileID: 11400000, guid: d09c1bb08ca848c49a3237911f2198dc, type: 2}

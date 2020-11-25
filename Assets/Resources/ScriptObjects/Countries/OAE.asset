@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c704c364a1134b45a00fce84f82ace0, type: 3}
+  m_Name: OAE
+  m_EditorClassIdentifier: 
+  posibleItems:
+  - {fileID: 11400000, guid: ae458f9aac5192d40bfef13440c50150, type: 2}
+  - {fileID: 11400000, guid: 8b9d9db3e0cee584bb0758ac0a38b454, type: 2}
+  - {fileID: 11400000, guid: d9ef6ef43678501458cac9fca12af3d3, type: 2}
+  - {fileID: 11400000, guid: d5ea48ca7ce91074eb429b916e6a5711, type: 2}
+  - {fileID: 11400000, guid: 232432ced6edd454783f42c97df08ada, type: 2}
+  - {fileID: 11400000, guid: bb5141d2348587541b8c7db9dd60218e, type: 2}
+  - {fileID: 11400000, guid: d2be5eb94e2fc4b468b8d2d8c01b7a80, type: 2}
+  - {fileID: 11400000, guid: 127724d4a3d4a0e4ab63a94650f60093, type: 2}
+  - {fileID: 11400000, guid: 12339808013d8954c98c7d0c05d8398d, type: 2}
+  posibleClients:
+  - {fileID: 11400000, guid: d09c1bb08ca848c49a3237911f2198dc, type: 2}

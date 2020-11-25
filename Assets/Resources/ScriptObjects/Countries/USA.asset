@@ -15,4 +15,11 @@ MonoBehaviour:
   posibleItems:
   - {fileID: 11400000, guid: d5ea48ca7ce91074eb429b916e6a5711, type: 2}
   - {fileID: 11400000, guid: 8b9d9db3e0cee584bb0758ac0a38b454, type: 2}
+  - {fileID: 11400000, guid: 9ee9517c7e4705b49acaf7402b6eee7b, type: 2}
+  - {fileID: 11400000, guid: 8200d6949bfdea64baef5a89b31f3871, type: 2}
+  - {fileID: 11400000, guid: 49dba834a6775dd42922391732a130cd, type: 2}
+  - {fileID: 11400000, guid: af90951aaaa74da43842cdd2f6700856, type: 2}
+  - {fileID: 11400000, guid: bb5141d2348587541b8c7db9dd60218e, type: 2}
+  - {fileID: 11400000, guid: f61dc03b5dbf1354e867d0efdab10b92, type: 2}
+  - {fileID: 11400000, guid: 12339808013d8954c98c7d0c05d8398d, type: 2}
   posibleClients: []

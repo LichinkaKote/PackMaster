@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemSize: {x: 1, y: 1}
   possibleSuitCases:
-  - {fileID: 11400000, guid: 1297d6de979f63541ac0020e53dd5b91, type: 2}
+  - {fileID: 11400000, guid: 8304c50d6ae2c904c9490cc5c24c776e, type: 2}
   - {fileID: 11400000, guid: 7b5394ec04f079c48a0666c03eeedc00, type: 2}
