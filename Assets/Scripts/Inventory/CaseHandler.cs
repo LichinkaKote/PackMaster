@@ -10,6 +10,7 @@ public class CaseHandler : MonoBehaviour
     private InventoryUI invUI;
     private RectTransform bodyInst;
     private Animator animator;
+    private Vector3 pos;
     public InventoryUI InvUI { get => invUI; }
     public RectTransform Rect { get => bodyInst; }
 
@@ -32,18 +33,18 @@ public class CaseHandler : MonoBehaviour
         FitBodyToGrid(bodyInst);
     }
     
-    private void SetupGridParams(InventoryUI inventoryUI)
+    private void SetupGridParams(InventoryUI invUI)
     {
-        var invUiRect = inventoryUI.transform as RectTransform;
+        var invUiRect = invUI.transform as RectTransform;
         invUiRect.sizeDelta = Vector2.zero;
         invUiRect.anchorMin = Vector2.zero;
         invUiRect.anchorMax = Vector2.one;
         invUiRect.anchoredPosition = Vector2.zero;
-        inventoryUI.SetPosition(invUiOffset);
-        inventoryUI.SetCellSize(suitCase.CellSize);
+        invUI.SetPosition(invUiOffset);
+        invUI.SetCellSize(suitCase.CellSize);
         var inventory = new Inventory();
         inventory.Size = suitCase.CellGridSize;
-        inventoryUI.SetInventory(inventory);
+        invUI.SetInventory(inventory);
     }
     private void FitBodyToGrid(RectTransform bodyRect)
     {
@@ -54,12 +55,14 @@ public class CaseHandler : MonoBehaviour
     public IEnumerator CloseAnim(string trigger)
     {
         animator.SetTrigger(trigger);
-        yield return new WaitForSeconds(1f);
-        bodyInst.gameObject.SetActive(false);
+        yield return new WaitForSeconds(1.2f);
+        
+        workspace.anchoredPosition = new Vector3(5000, 0, 0);
         animator.SetTrigger("Idle");
     }
     public void RestoreBody()
     {
-        bodyInst.gameObject.SetActive(true);
+        //gameObject.SetActive(true);
+        workspace.anchoredPosition = new Vector3(0, 0, 0);
     }
 }

@@ -98,7 +98,7 @@ public class LevelManager : MonoBehaviour
         invUi.Rect.anchorMax = new Vector2(0.5f, 0);
         invUi.Rect.anchoredPosition = Vector2.zero;
         invUi.Rect.sizeDelta = invUi.ContentRect.sizeDelta;
-        invUi.ContentRect.anchoredPosition = new Vector2(0, 230);
+        invUi.ContentRect.anchoredPosition = new Vector2(0, 210);
         FillParams fillParams = new FillParams();
         fillParams.posibleItems = levelPosibleItems;
         fillParams.fillPercent = 1;
